@@ -5,34 +5,26 @@
  *
  */
 
-
-
-
 #ifndef LOGFILE_HPP_
 #define LOGFILE_HPP_
 
-#include <iosfwd>
 #include <fstream>
+#include <functional>
 #include <memory>
-
 
 namespace jdlog {
 
-namespace detail {
-
-//void fstrm_close()
-
-} /* detail:: */
-
-
 class log_file {
-  std::unique_ptr<std::fstream> fstrm_;
+  using fstrm_t =
+      std::unique_ptr<std::fstream, std::function<void(std::fstream*)>>;
 
-public:
+  fstrm_t fstrm_;
+
+ public:
   log_file() = delete;
   ~log_file() = default;
 
-  explicit log_file(std::string& file) noexcept;
+  explicit log_file(std::string file) noexcept { open(file); }
 
   bool open(std::string& file) noexcept;
 
@@ -41,13 +33,12 @@ public:
   template <std::size_t SZ>
   void flush(std::array<unsigned char, SZ>& buf) {
     if (fstrm_->is_open())
-      fstrm_ << buf;
+      *fstrm_ << buf.data();
     else {
       throw std::runtime_error("File is not open");
     }
   }
 };
-
 
 } /* logger:: */
 
