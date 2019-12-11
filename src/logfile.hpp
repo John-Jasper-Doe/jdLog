@@ -13,14 +13,10 @@
 
 #include <iosfwd>
 #include <fstream>
-//#include <filesystem>
-//#include <array>
 #include <memory>
 
 
-
-
-namespace logger {
+namespace jdlog {
 
 namespace detail {
 

@@ -16,7 +16,7 @@
 #include <algorithm>
 
 
-namespace logger {
+namespace jdlog {
 
 
 constexpr std::size_t buff_size = 1048576; /* 1 MB */
@@ -56,14 +56,14 @@ public:
   log_helper& operator=(log_helper&&) = delete;
 
   template <typename T>
-  friend logger::log_helper & operator<<(logger::log_helper& l, const T& v);
-  friend logger::log_helper & operator<<(logger::log_helper& l, const logger::endl_&);
-  friend logger::log_helper & operator<<(logger::log_helper& l, const logger::flush_&);
+  friend jdlog::log_helper & operator<<(jdlog::log_helper& l, const T& v);
+  friend jdlog::log_helper & operator<<(jdlog::log_helper& l, const jdlog::endl_&);
+  friend jdlog::log_helper & operator<<(jdlog::log_helper& l, const jdlog::flush_&);
 };
 
 
 template <typename T>
-logger::log_helper & operator<<(logger::log_helper& l, const T& v) {
+jdlog::log_helper & operator<<(jdlog::log_helper& l, const T& v) {
   if constexpr (std::is_integral_v<T> || std::is_floating_point_v<T>) {
     std::string s_num = std::to_string(v);
     std::copy(std::begin(s_num), std::end(s_num), std::begin(l.str_) + l.pos_in_str_);

@@ -4,7 +4,7 @@
 #include "loghelper.hpp"
 #include "logfile.hpp"
 
-namespace logger {
+namespace jdlog {
 
 log& log::instance() noexcept {
   static log l;

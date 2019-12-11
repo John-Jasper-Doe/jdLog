@@ -10,7 +10,7 @@
 
 #include <memory>
 
-namespace logger {
+namespace jdlog {
 
 class log_file;
 class log_helper;
@@ -25,7 +25,7 @@ public:
 
 
   template <typename T>
-  friend logger::log& operator<<(logger::log& l, T& v);
+  friend jdlog::log& operator<<(jdlog::log& l, T& v);
 
 
 private:
@@ -40,7 +40,7 @@ private:
 
 
 template <typename T>
-logger::log& operator<<(logger::log& l, T& v) {
+jdlog::log& operator<<(jdlog::log& l, T& v) {
   l << v;
   return l;
 }

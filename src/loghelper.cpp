@@ -8,9 +8,9 @@
 
 #include "loghelper.hpp"
 
-namespace logger {
+namespace jdlog {
 
-logger::log_helper & operator<<(logger::log_helper& l, const logger::endl_&) {
+jdlog::log_helper & operator<<(jdlog::log_helper& l, const jdlog::endl_&) {
   l.str_[l.pos_in_str_] = '\n';
   std::copy_n(std::begin(l.str_), ++l.pos_in_str_, std::begin(l.buf_) + l.pos_in_buf_);
   l.pos_in_buf_+= l.pos_in_str_;
@@ -18,7 +18,7 @@ logger::log_helper & operator<<(logger::log_helper& l, const logger::endl_&) {
   return l;
 }
 
-logger::log_helper & operator<<(logger::log_helper& l, const logger::flush_&) {
+jdlog::log_helper & operator<<(jdlog::log_helper& l, const jdlog::flush_&) {
   std::copy_n(std::begin(l.str_), l.pos_in_str_, std::begin(l.buf_) + l.pos_in_buf_);
   l.pos_in_buf_+= l.pos_in_str_;
   l.pos_in_str_ = 0;

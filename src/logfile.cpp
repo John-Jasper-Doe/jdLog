@@ -8,12 +8,9 @@
 
 #include "logfile.hpp"
 
-#include <fstream>
-#include <filesystem>
 #include <array>
-#include <memory>
 
-namespace logger {
+namespace jdlog {
 
 
 log_file::log_file(std::string& file) noexcept {

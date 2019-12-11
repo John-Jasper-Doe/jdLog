@@ -10,7 +10,7 @@ int main(/*int argc, char** argv*/) {
   std::cout << "Start ...\n" << std::endl;
 
 
-  logger::log log;
+  jdlog::log log;
 
 //  log << 5 << " str" ;
 //  logger::log_helper log;
