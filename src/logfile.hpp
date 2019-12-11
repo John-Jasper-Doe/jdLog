@@ -15,8 +15,7 @@
 namespace jdlog {
 
 class log_file {
-  using fstrm_t =
-      std::unique_ptr<std::fstream, std::function<void(std::fstream*)>>;
+  using fstrm_t = std::unique_ptr<std::fstream, std::function<void(std::fstream*)>>;
 
   fstrm_t fstrm_;
 
@@ -24,9 +23,15 @@ class log_file {
   log_file() = delete;
   ~log_file() = default;
 
-  explicit log_file(std::string file) noexcept { open(file); }
+  explicit log_file(const std::string& file) noexcept { open(file); }
 
-  bool open(std::string& file) noexcept;
+  log_file(const log_file&) = delete;
+  log_file(log_file&&) = delete;
+
+  log_file& operator=(const log_file&) = delete;
+  log_file& operator=(log_file&&) = delete;
+
+  bool open(const std::string& file) noexcept;
 
   bool is_open() const noexcept { return fstrm_->is_open(); }
 

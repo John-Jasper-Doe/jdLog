@@ -11,7 +11,7 @@
 
 namespace jdlog {
 
-bool log_file::open(std::string& file) noexcept {
+bool log_file::open(const std::string& file) noexcept {
   fstrm_ = fstrm_t(new std::fstream(), [](std::fstream* fs) { fs->close(); });
 
   fstrm_->exceptions(std::fstream::failbit | std::fstream::badbit);
